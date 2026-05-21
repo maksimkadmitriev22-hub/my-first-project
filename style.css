@@ -1,0 +1,160 @@
+/* Убираем все стандартные отступы у элементов */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+/* ========== НАВИГАЦИОННАЯ ПАНЕЛЬ ========== */
+
+.navbar {
+    /* Фиксация: меню всегда висит сверху, не двигается при скролле */
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    
+    /* Полупрозрачный чёрный фон — основа */
+    background-color: rgba(0, 0, 0, 0.6);
+    
+    /* ↓ МАГИЧЕСКАЯ СТРОКА ↓ */
+    /* Размывает всё, что находится под меню.
+       Так сквозь фон не будут пробиваться детали картинки,
+       и меню станет визуально однородным. */
+    backdrop-filter: blur(10px);
+    /* Для Safari и старых браузеров — префиксная версия */
+    -webkit-backdrop-filter: blur(10px);
+    
+    /* Гарантирует, что меню всегда над другими элементами */
+    z-index: 100;
+    
+    /* Внутренние отступы сверху и снизу, чтобы меню не было узким */
+    padding: 15px 0;
+    
+    /* Лёгкая тень для отделения от страницы */
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+}
+
+.navbar-container {
+    /* Ограничитель ширины и центрирование */
+    max-width: 1200px;
+    margin: 0 auto;   /* Автоматические боковые отступы = центр */
+    padding: 0 20px;  /* Немного воздуха по краям на маленьких экранах */
+    
+    /* Flex-контейнер: логотип и меню в строку */
+    display: flex;
+    justify-content: space-between; /* Логотип слева, меню справа */
+    align-items: center;           /* Выравнивание по вертикали */
+}
+
+.navbar-logo {
+    color: white;
+    text-decoration: none;   /* Убираем подчёркивание у ссылки-логотипа */
+    font-size: 1.8rem;
+    font-weight: bold;
+    letter-spacing: 2px;     /* Расстояние между буквами */
+    text-shadow: 1px 1px 4px rgba(0,0,0,0.5); /* Тень для читаемости */
+    transition: 0.3s;
+}
+
+.navbar-logo:hover {
+    color: #e74c3c; /* При наведении логотип станет красным — как кнопка */
+}
+
+.navbar-menu {
+    list-style: none;  /* Убираем маркеры (точки) у пунктов списка */
+    display: flex;     /* Пункты меню выстраиваются в одну строку */
+    gap: 30px;         /* Расстояние между соседними ссылками */
+    margin: 0;
+    padding: 0;
+}
+
+.navbar-link {
+    color: #ddd;               /* Светло-серый текст */
+    text-decoration: none;     /* Без подчёркивания */
+    font-size: 1rem;
+    font-weight: 500;
+    transition: 0.3s;          /* Плавное изменение цвета */
+    padding: 5px 0;            /* Чуть-чуть расширяем область клика */
+    position: relative;
+}
+
+/* Декоративная полоска под ссылкой при наведении */
+.navbar-link::after {
+    content: '';                /* Обязательно для псевдоэлемента */
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0%;
+    height: 2px;
+    background-color: #e74c3c; /* Красная полоска */
+    transition: width 0.3s;    /* Анимируется ширина */
+}
+
+.navbar-link:hover {
+    color: #fff;               /* Ярко-белый при наведении */
+}
+
+.navbar-link:hover::after {
+    width: 100%;               /* Полоска расширяется на всю ширину */
+}
+
+/* ---------- БЛОК HERO ---------- */
+.hero {
+    /* Занимает 100% высоты экрана пользователя */
+    height: 100vh;
+    
+    /* Фон: наложение тёмной плёнки поверх картинки для контраста текста */
+    background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), 
+                url('https://images.unsplash.com/photo-1511512578047-dfb367046420?auto=format&fit=crop&w=1350&q=80');
+    background-size: cover;
+    background-position: center;
+    
+    /* Включаем Flexbox (главный инструмент для выравнивания) */
+    display: flex;
+    justify-content: center; /* По горизонтали в центр */
+    align-items: center;     /* По вертикали в центр */
+    text-align: center;
+    color: white;
+    padding: 20px;
+}
+
+.hero-content {
+    max-width: 800px; /* Чтобы текст не размазывался на широких экранах */
+}
+
+.hero-title {
+    font-size: 4rem;          /* Огромный текст */
+    text-transform: uppercase; /* Все буквы большие */
+    letter-spacing: 4px;
+    margin-bottom: 15px;
+    text-shadow: 2px 2px 8px rgba(0,0,0,0.8); /* Тень для читаемости */
+}
+
+.hero-subtitle {
+    font-size: 1.4rem;
+    font-weight: 300; /* Тонкое начертание */
+    margin-bottom: 30px;
+    line-height: 1.5;
+}
+
+.hero-btn {
+    display: inline-block;
+    padding: 15px 40px;
+    background-color: #e74c3c; /* Красный цвет, как у кнопки тревоги */
+    color: white;
+    text-decoration: none; /* Убираем подчёркивание у ссылки */
+    font-size: 1.2rem;
+    font-weight: bold;
+    border-radius: 5px;     /* Скругляем углы */
+    transition: 0.3s;       /* Плавная анимация */
+}
+
+/* Эффект при наведении курсора */
+.hero-btn:hover {
+    background-color: #c0392b; /* Темнеет */
+    transform: translateY(-3px); /* Приподнимается */
+}
