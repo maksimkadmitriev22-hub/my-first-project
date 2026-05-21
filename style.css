@@ -258,25 +258,6 @@ body {
     background-color: #c0392b;
     transform: scale(1.05); /* Лёгкое увеличение */
 }
-/* ========== АДАПТИВНОСТЬ ========== */
-
-/* Планшеты: 2 карточки в ряд */
-@media (max-width: 900px) {
-    .quests-grid {
-        grid-template-columns: repeat(2, 1fr);
-    }
-}
-
-/* Телефоны: 1 карточка на всю ширину */
-@media (max-width: 600px) {
-    .quests-grid {
-        grid-template-columns: 1fr;
-    }
-
-    .section-title {
-        font-size: 2rem;
-    }
-}
 /* ========== ФОРМА ОБРАТНОЙ СВЯЗИ ========== */
 
 .contact {
@@ -397,4 +378,111 @@ body {
     font-size: 0.9rem;
     margin: 0;
     color: #777;
+}
+/* ========== СТРАНИЦА КВЕСТА ========== */
+
+/* Маленький hero */
+.quest-hero {
+    height: 50vh;                /* Половина экрана */
+    background-size: cover;
+    background-position: center;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Затемняющий слой */
+.quest-hero-overlay {
+    /* Можно задать отдельный div с фоном, но проще через псевдоэлемент */
+    /* Мы поступим иначе: используем абсолютное позиционирование для overlay */
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7));
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Заголовок внутри overlay */
+.quest-hero-title {
+    color: white;
+    font-size: 3rem;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    text-shadow: 2px 2px 8px rgba(0,0,0,0.8);
+    margin: 0;
+    position: relative; /* чтобы не уехать */
+    z-index: 2;
+}
+
+/* Контентная часть */
+.quest-content {
+    background-color: #111;
+    padding: 60px 0;
+    color: #ddd;
+    line-height: 1.7;
+}
+
+.quest-article h2 {
+    color: white;
+    font-size: 1.8rem;
+    margin-top: 30px;
+    margin-bottom: 15px;
+}
+
+.quest-article p {
+    margin-bottom: 20px;
+}
+
+.quest-features {
+    list-style: none;
+    padding: 0;
+    margin-bottom: 30px;
+}
+
+.quest-features li {
+    padding: 5px 0 5px 25px;
+    position: relative;
+}
+
+.quest-features li::before {
+    content: '▸';
+    position: absolute;
+    left: 0;
+    color: #e74c3c;
+}
+
+.quest-price {
+    font-size: 1.4rem;
+    color: white;
+    font-weight: bold;
+    margin: 20px 0;
+}
+
+.quest-btn {
+    display: inline-block;
+    margin-top: 10px;
+}
+/* ========== АДАПТИВНОСТЬ ========== */
+
+/* Планшеты: 2 карточки в ряд */
+@media (max-width: 900px) {
+    .quests-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+/* Телефоны: 1 карточка на всю ширину */
+@media (max-width: 600px) {
+    .quests-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .section-title {
+        font-size: 2rem;
+    }
 }
