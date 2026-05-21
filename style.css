@@ -467,6 +467,77 @@ body {
     display: inline-block;
     margin-top: 10px;
 }
+
+/* ========== ПОПАП (МОДАЛЬНОЕ ОКНО) ========== */
+
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.8); /* Тёмный фон */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 200;               /* Поверх всего */
+    
+    /* По умолчанию попап скрыт */
+    opacity: 0;
+    pointer-events: none;      /* Не пропускает клики */
+    transition: opacity 0.3s;
+}
+
+/* Класс, который будет добавлять JavaScript */
+.modal-overlay.active {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+.modal {
+    background-color: #1c1c1c;
+    border-radius: 8px;
+    padding: 40px;
+    max-width: 500px;
+    width: 90%;
+    position: relative;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+    border: 1px solid #333;
+}
+
+.modal-close {
+    position: absolute;
+    top: 10px;
+    right: 15px;
+    background: none;
+    border: none;
+    color: #999;
+    font-size: 2rem;
+    cursor: pointer;
+    transition: color 0.3s;
+    line-height: 1;
+}
+
+.modal-close:hover {
+    color: #e74c3c;
+}
+
+.modal-title {
+    color: white;
+    margin-top: 0;
+    margin-bottom: 25px;
+    font-size: 1.8rem;
+    text-align: center;
+}
+
+.modal-form .form-input {
+    margin-bottom: 15px;
+}
+
+.modal-btn {
+    margin-top: 10px;
+}
+
 /* ========== АДАПТИВНОСТЬ ========== */
 
 /* Планшеты: 2 карточки в ряд */
