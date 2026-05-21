@@ -158,3 +158,122 @@ body {
     background-color: #c0392b; /* Темнеет */
     transform: translateY(-3px); /* Приподнимается */
 }
+/* ========== СЕКЦИЯ КВЕСТОВ ========== */
+
+.quests {
+    background-color: #111;      /* Почти чёрный фон */
+    padding: 80px 0;            /* Отступы сверху и снизу (80px), слева/справа — 0 */
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+.section-title {
+    text-align: center;
+    color: white;
+    font-size: 2.5rem;
+    margin-bottom: 50px;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    position: relative;
+}
+
+/* Декоративная полоска под заголовком */
+.section-title::after {
+    content: '';
+    display: block;
+    width: 100px;
+    height: 3px;
+    background-color: #e74c3c;
+    margin: 15px auto 0;
+}
+
+/* ===== СЕТКА (CSS GRID) ===== */
+.quests-grid {
+    display: grid;
+    /* Магия Grid: создаём 3 колонки равной ширины.
+       repeat(3, 1fr) = 3 раза по одной фракции доступного пространства */
+    grid-template-columns: repeat(3, 1fr);
+    gap: 30px;                 /* Расстояние между карточками */
+}
+
+/* ===== КАРТОЧКА ===== */
+.quest-card {
+    background-color: #1c1c1c; /* Тёмный фон карточки */
+    border-radius: 8px;        /* Скруглённые углы */
+    overflow: hidden;          /* Всё, что вылезает за границы, обрезается
+                                  (нужно, чтобы img не выходил за радиусы) */
+    box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.quest-card:hover {
+    transform: translateY(-10px); /* Карточка приподнимается */
+    box-shadow: 0 15px 30px rgba(0,0,0,0.5);
+}
+
+/* Изображение внутри карточки */
+.quest-card-img {
+    width: 100%;
+    height: 250px;         /* Фиксированная высота */
+    object-fit: cover;     /* Картинка заполняет блок, обрезая лишнее,
+                              сохраняя пропорции. Как background-size: cover, но для img */
+    display: block;
+}
+
+/* Тело карточки (текст и кнопка) */
+.quest-card-body {
+    padding: 25px;
+}
+
+.quest-card-title {
+    color: white;
+    font-size: 1.4rem;
+    margin-bottom: 12px;
+}
+
+.quest-card-desc {
+    color: #ccc;
+    font-size: 0.95rem;
+    line-height: 1.6;
+    margin-bottom: 20px;
+}
+
+.quest-card-btn {
+    display: inline-block;
+    padding: 10px 25px;
+    background-color: #e74c3c;
+    color: white;
+    text-decoration: none;
+    border-radius: 5px;
+    font-size: 0.9rem;
+    font-weight: bold;
+    transition: background-color 0.3s, transform 0.2s;
+}
+
+.quest-card-btn:hover {
+    background-color: #c0392b;
+    transform: scale(1.05); /* Лёгкое увеличение */
+}
+/* ========== АДАПТИВНОСТЬ ========== */
+
+/* Планшеты: 2 карточки в ряд */
+@media (max-width: 900px) {
+    .quests-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+/* Телефоны: 1 карточка на всю ширину */
+@media (max-width: 600px) {
+    .quests-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .section-title {
+        font-size: 2rem;
+    }
+}
