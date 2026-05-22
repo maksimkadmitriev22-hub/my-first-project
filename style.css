@@ -537,7 +537,81 @@ body {
 .modal-btn {
     margin-top: 10px;
 }
+/* ========== FAQ (АККОРДЕОН) ========== */
 
+.faq {
+    background-color: #111;
+    padding: 80px 0;
+}
+
+.faq-list {
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+/* Элемент списка (вопрос + ответ) */
+.faq-item {
+    border-bottom: 1px solid #333; /* Разделительная линия */
+    margin-bottom: 0;
+}
+
+/* Кнопка-вопрос */
+.faq-question {
+    width: 100%;                /* Во всю ширину */
+    text-align: left;           /* Текст слева */
+    background: none;
+    border: none;
+    padding: 20px 0;
+    color: white;
+    font-size: 1.2rem;
+    font-weight: 500;
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between; /* Вопрос слева, иконка справа */
+    align-items: center;
+    transition: color 0.3s;
+}
+
+.faq-question:hover {
+    color: #e74c3c;
+}
+
+/* Иконка (плюс/минус) */
+.faq-icon {
+    font-size: 1.5rem;
+    font-weight: 300;
+    transition: transform 0.3s;
+    flex-shrink: 0;              /* Не сжимается */
+    margin-left: 15px;
+}
+
+/* Когда вопрос открыт, поворачиваем иконку на 45 градусов (получается крестик) */
+.faq-item.active .faq-icon {
+    transform: rotate(45deg);
+}
+
+/* Контейнер ответа */
+.faq-answer {
+    max-height: 0;              /* Скрыт по умолчанию */
+    overflow: hidden;           /* Всё, что выходит за пределы, обрезается */
+    transition: max-height 0.4s ease; /* Плавное раскрытие */
+}
+
+/* Сам текст ответа */
+.faq-answer p {
+    color: #ccc;
+    line-height: 1.6;
+    padding-bottom: 20px;
+    margin: 0;
+}
+
+/* Активное состояние — JavaScript добавит класс active к faq-item,
+   а мы зададим max-height достаточно большим, чтобы текст поместился */
+.faq-item.active .faq-answer {
+    /* 200px — примерное значение. Можно подобрать под длину текста.
+       В будущем заменим на JS-расчёт высоты */
+    max-height: 200px;
+}
 /* ========== АДАПТИВНОСТЬ ========== */
 
 /* Планшеты: 2 карточки в ряд */

@@ -1,33 +1,42 @@
-// script.js — первый скрипт для нашего сайта
-
-// Мы ищем элементы на странице по их id и сохраняем в переменные
-// const — значит, переменная не будет меняться (константа)
+// ========== ПОПАП ==========
 const modalOverlay = document.getElementById('modal-overlay');
 const modalClose = document.getElementById('modal-close');
 const openModalBtn = document.getElementById('open-modal-btn');
 
-// Если кнопка существует на странице, вешаем обработчик
-if (openModalBtn) {
-    openModalBtn.addEventListener('click', openModal);
-}
-// Функция открытия попапа
-function openModal() {
-    modalOverlay.classList.add('active');
-}
-
-// Функция закрытия попапа
-function closeModal() {
-    modalOverlay.classList.remove('active');
-}
-
-// Вешаем обработчик на кнопку закрытия (крестик)
-modalClose.addEventListener('click', closeModal);
-
-// Закрываем попап при клике на оверлей (тёмный фон за окном)
-modalOverlay.addEventListener('click', function(event) {
-    // event.target — элемент, по которому щёлкнули
-    // Если щёлкнули именно по оверлею, а не по модальному окну внутри
-    if (event.target === modalOverlay) {
-        closeModal();
+// Если все элементы попапа есть на странице — только тогда вешаем обработчики
+if (modalOverlay && modalClose && openModalBtn) {
+    function openModal() {
+        modalOverlay.classList.add('active');
     }
+
+    function closeModal() {
+        modalOverlay.classList.remove('active');
+    }
+
+    openModalBtn.addEventListener('click', openModal);
+    modalClose.addEventListener('click', closeModal);
+    modalOverlay.addEventListener('click', function(event) {
+        if (event.target === modalOverlay) {
+            closeModal();
+        }
+    });
+}
+// ========== FAQ-АККОРДЕОН ==========
+
+const faqQuestions = document.querySelectorAll('.faq-question');
+
+faqQuestions.forEach(function(question) {
+    question.addEventListener('click', function() {
+        const faqItem = this.parentElement;
+        
+        // Закрываем остальные
+        document.querySelectorAll('.faq-item').forEach(function(item) {
+            if (item !== faqItem) {
+                item.classList.remove('active');
+            }
+        });
+        
+        // Переключаем текущий
+        faqItem.classList.toggle('active');
+    });
 });
