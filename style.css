@@ -631,3 +631,35 @@ body {
         font-size: 2rem;
     }
 }
+/* ========== РАЗДЕЛ «О НАС» ========== */
+.about { background-color: #111; padding: 80px 0; }
+.about-grid { display: flex; align-items: center; gap: 60px; flex-wrap: wrap; }
+.about-image { flex: 1 1 400px; border-radius: 8px; overflow: hidden; }
+.about-img { width: 100%; height: auto; display: block; object-fit: cover; }
+.about-text { flex: 1 1 400px; color: #ddd; line-height: 1.7; }
+.about-title { text-align: left; margin-bottom: 25px; }
+.about-title::after { margin: 15px 0 0; } /* убираем автоцентр */
+.about-text p { margin-bottom: 15px; }
+.about-stats { display: flex; gap: 30px; margin-top: 30px; flex-wrap: wrap; }
+.stat-item { text-align: center; }
+.stat-number { display: block; font-size: 2rem; font-weight: bold; color: #e74c3c; }
+.stat-label { display: block; color: #999; font-size: 0.9rem; margin-top: 5px; }
+
+/* ========== ОТЗЫВЫ ========== */
+.reviews { background-color: #1a1a1a; padding: 80px 0; }
+.reviews-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 30px; }
+.review-card { background-color: #222; border-radius: 8px; padding: 25px; border: 1px solid #333; transition: transform 0.3s, box-shadow 0.3s; }
+.review-card:hover { transform: translateY(-5px); box-shadow: 0 10px 25px rgba(0,0,0,0.4); }
+.review-header { display: flex; align-items: center; gap: 15px; margin-bottom: 15px; }
+.review-avatar { width: 50px; height: 50px; border-radius: 50%; object-fit: cover; }
+.review-name { color: white; font-size: 1.1rem; margin: 0 0 5px; }
+.review-date { color: #888; font-size: 0.85rem; }
+.review-text { color: #ccc; font-style: italic; line-height: 1.6; margin: 0; }
+
+/* Адаптивность (добавь к уже существующим @media) */
+@media (max-width: 900px) {
+    .reviews-grid { grid-template-columns: repeat(2, 1fr); }
+}
+@media (max-width: 600px) {
+    .reviews-grid { grid-template-columns: 1fr; }
+}
