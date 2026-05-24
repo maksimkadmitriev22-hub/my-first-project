@@ -88,3 +88,49 @@ function checkScroll() {
 // Вешаем обработчик прокрутки и сразу проверяем при загрузке
 window.addEventListener('scroll', checkScroll);
 checkScroll();
+
+// ========== КАРУСЕЛЬ ОТЗЫВОВ ==========
+const slides = document.querySelectorAll('.review-card');
+const prevBtn = document.querySelector('.carousel-prev');
+const nextBtn = document.querySelector('.carousel-next');
+let currentSlide = 0;
+
+function updateCarousel() {
+  const total = slides.length;
+  slides.forEach(slide => {
+    slide.classList.remove('left', 'active', 'right', 'hidden');
+  });
+
+  // Рассчитываем индексы соседей с зацикливанием
+  let leftIndex = currentSlide - 1;
+  if (leftIndex < 0) leftIndex = total - 1;
+  let rightIndex = currentSlide + 1;
+  if (rightIndex >= total) rightIndex = 0;
+
+  // Назначаем классы
+  slides[currentSlide].classList.add('active');
+  slides[leftIndex].classList.add('left');
+  slides[rightIndex].classList.add('right');
+
+  // Все остальные — hidden
+  slides.forEach((slide, index) => {
+    if (index !== currentSlide && index !== leftIndex && index !== rightIndex) {
+      slide.classList.add('hidden');
+    }
+  });
+}
+
+prevBtn.addEventListener('click', () => {
+  currentSlide--;
+  if (currentSlide < 0) currentSlide = slides.length - 1;
+  updateCarousel();
+});
+
+nextBtn.addEventListener('click', () => {
+  currentSlide++;
+  if (currentSlide >= slides.length) currentSlide = 0;
+  updateCarousel();
+});
+
+// Инициализация
+updateCarousel();

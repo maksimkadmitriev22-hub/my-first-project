@@ -645,7 +645,7 @@ body {
 .stat-number { display: block; font-size: 2rem; font-weight: bold; color: #e74c3c; }
 .stat-label { display: block; color: #999; font-size: 0.9rem; margin-top: 5px; }
 
-/* ========== ОТЗЫВЫ ========== */
+/* ========== ОТЗЫВЫ ========== без колеса */
 .reviews { background-color: #1a1a1a; padding: 80px 0; }
 .reviews-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 30px; }
 .review-card { background-color: #222; border-radius: 8px; padding: 25px; border: 1px solid #333; transition: transform 0.3s, box-shadow 0.3s; }
@@ -655,6 +655,83 @@ body {
 .review-name { color: white; font-size: 1.1rem; margin: 0 0 5px; }
 .review-date { color: #888; font-size: 0.85rem; }
 .review-text { color: #ccc; font-style: italic; line-height: 1.6; margin: 0; }
+
+/* ========== КАРУСЕЛЬ ОТЗЫВОВ ========== */
+.carousel {
+  position: relative;
+  height: 400px; /* достаточная высота для карточек */
+  perspective: 1000px;
+  overflow: hidden; /* скрываем вылезающие части */
+}
+
+.review-card {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 300px; /* фиксированная ширина для постоянства */
+  max-width: 80%;
+  padding: 25px;
+  background-color: #222;
+  border: 1px solid #333;
+  border-radius: 8px;
+  transition: all 0.5s ease;
+  transform-origin: center center;
+  backface-visibility: hidden; /* скрываем обратную сторону при повороте */
+}
+
+/* Центральный слайд */
+.review-card.active {
+  transform: translate(-50%, -50%) scale(1) rotateY(0deg);
+  opacity: 1;
+  z-index: 3;
+}
+
+/* Левый слайд */
+.review-card.left {
+  transform: translate(-150%, -50%) scale(0.8) rotateY(-25deg);
+  opacity: 0.7;
+  z-index: 2;
+}
+
+/* Правый слайд */
+.review-card.right {
+  transform: translate(50%, -50%) scale(0.8) rotateY(25deg);
+  opacity: 0.7;
+  z-index: 2;
+}
+
+/* Скрытые слайды */
+.review-card.hidden {
+  transform: translate(-50%, -50%) scale(0.6) rotateY(0deg);
+  opacity: 0;
+  z-index: 1;
+  pointer-events: none;
+}
+
+/* Кнопки-стрелки */
+.carousel-btn {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: rgba(0,0,0,0.6);
+  border: 1px solid #e74c3c;
+  color: white;
+  font-size: 1.5rem;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  cursor: pointer;
+  z-index: 10;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  line-height: 1;
+  transition: background 0.3s;
+}
+.carousel-btn:hover { background: #e74c3c; }
+
+.carousel-prev { left: 10px; }
+.carousel-next { right: 10px; }
 
 /* Адаптивность (добавь к уже существующим @media) */
 @media (max-width: 900px) {
