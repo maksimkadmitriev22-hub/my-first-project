@@ -121,3 +121,20 @@ nextBtn.addEventListener('click', () => {
 });
 
 updateCarousel();
+
+// ========== БУРГЕР-МЕНЮ ==========
+const burger = document.getElementById('burger');
+const navbarMenu = document.querySelector('.navbar-menu');
+
+burger.addEventListener('click', () => {
+    burger.classList.toggle('active');
+    navbarMenu.classList.toggle('active');
+});
+
+// Закрываем меню при клике на любую ссылку внутри него
+navbarMenu.querySelectorAll('.navbar-link').forEach(link => {
+    link.addEventListener('click', () => {
+        burger.classList.remove('active');
+        navbarMenu.classList.remove('active');
+    });
+});     
