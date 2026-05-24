@@ -8,6 +8,11 @@
 body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
+
+html {
+  scroll-behavior: smooth;
+}
+
 /* ========== НАВИГАЦИОННАЯ ПАНЕЛЬ ========== */
 
 .navbar {
