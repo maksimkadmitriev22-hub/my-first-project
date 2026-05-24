@@ -84,43 +84,46 @@ checkScroll();
 const slides = document.querySelectorAll('.review-card');
 const prevBtn = document.querySelector('.carousel-prev');
 const nextBtn = document.querySelector('.carousel-next');
-let currentSlide = 0;
 
-function updateCarousel() {
-  const total = slides.length;
-  slides.forEach(slide => {
-    slide.classList.remove('left', 'active', 'right', 'hidden');
-  });
+if (slides.length > 0 && prevBtn && nextBtn) {
+    let currentSlide = 0;
 
-  let leftIndex = currentSlide - 1;
-  if (leftIndex < 0) leftIndex = total - 1;
-  let rightIndex = currentSlide + 1;
-  if (rightIndex >= total) rightIndex = 0;
+    function updateCarousel() {
+        const total = slides.length;
+        slides.forEach(slide => {
+            slide.classList.remove('left', 'active', 'right', 'hidden');
+        });
 
-  slides[currentSlide].classList.add('active');
-  slides[leftIndex].classList.add('left');
-  slides[rightIndex].classList.add('right');
+        let leftIndex = currentSlide - 1;
+        if (leftIndex < 0) leftIndex = total - 1;
+        let rightIndex = currentSlide + 1;
+        if (rightIndex >= total) rightIndex = 0;
 
-  slides.forEach((slide, index) => {
-    if (index !== currentSlide && index !== leftIndex && index !== rightIndex) {
-      slide.classList.add('hidden');
+        slides[currentSlide].classList.add('active');
+        slides[leftIndex].classList.add('left');
+        slides[rightIndex].classList.add('right');
+
+        slides.forEach((slide, index) => {
+            if (index !== currentSlide && index !== leftIndex && index !== rightIndex) {
+                slide.classList.add('hidden');
+            }
+        });
     }
-  });
+
+    prevBtn.addEventListener('click', () => {
+        currentSlide--;
+        if (currentSlide < 0) currentSlide = slides.length - 1;
+        updateCarousel();
+    });
+
+    nextBtn.addEventListener('click', () => {
+        currentSlide++;
+        if (currentSlide >= slides.length) currentSlide = 0;
+        updateCarousel();
+    });
+
+    updateCarousel();
 }
-
-prevBtn.addEventListener('click', () => {
-  currentSlide--;
-  if (currentSlide < 0) currentSlide = slides.length - 1;
-  updateCarousel();
-});
-
-nextBtn.addEventListener('click', () => {
-  currentSlide++;
-  if (currentSlide >= slides.length) currentSlide = 0;
-  updateCarousel();
-});
-
-updateCarousel();
 
 // ========== БУРГЕР-МЕНЮ ==========
 const burger = document.getElementById('burger');
