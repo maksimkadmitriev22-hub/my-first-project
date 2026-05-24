@@ -15,4 +15,4 @@
 - Адаптивная вёрстка
 - Навигация с якорями
 
-[Посмотреть сайт]([https://твой_юзернейм.github.io/my-first-project](https://maksimkadmitriev22-hub.github.io/my-first-project/))
+[Посмотреть сайт](https://maksimkadmitriev22-hub.github.io/my-first-project/index.html) 
