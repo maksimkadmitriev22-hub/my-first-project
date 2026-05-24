@@ -39,46 +39,48 @@ faqQuestions.forEach(function(question) {
 });
 
 // ========== АНИМАЦИЯ СЧЁТЧИКОВ ==========
-function animateNumber(element) {
-  const target = Number(element.dataset.target);
-  const duration = 2000;
-  const step = target / (duration / 16);
-  const suffix = element.dataset.suffix || '';
-  let current = 0;
-
-  const timer = setInterval(() => {
-    current += step;
-    if (current >= target) {
-      element.textContent = target + suffix;
-      clearInterval(timer);
-    } else {
-      element.textContent = Math.floor(current);
-    }
-  }, 16);
-}
-
-function isElementVisible(element) {
-  const rect = element.getBoundingClientRect();
-  return rect.top < window.innerHeight && rect.bottom > 0;
-}
-
-const statNumbers = document.querySelectorAll('.stat-number');
 const aboutStats = document.querySelector('.about-stats');
-let animated = false;
 
-function checkScroll() {
-  if (animated) return;
+if (aboutStats) {
+    function animateNumber(element) {
+        const target = Number(element.dataset.target);
+        const duration = 2000;
+        const step = target / (duration / 16);
+        const suffix = element.dataset.suffix || '';
+        let current = 0;
 
-  if (isElementVisible(aboutStats)) {
-    animated = true;
-    statNumbers.forEach(function(element) {
-      animateNumber(element);
-    });
-  }
+        const timer = setInterval(() => {
+            current += step;
+            if (current >= target) {
+                element.textContent = target + suffix;
+                clearInterval(timer);
+            } else {
+                element.textContent = Math.floor(current);
+            }
+        }, 16);
+    }
+
+    function isElementVisible(element) {
+        const rect = element.getBoundingClientRect();
+        return rect.top < window.innerHeight && rect.bottom > 0;
+    }
+
+    const statNumbers = document.querySelectorAll('.stat-number');
+    let animated = false;
+
+    function checkScroll() {
+        if (animated) return;
+        if (isElementVisible(aboutStats)) {
+            animated = true;
+            statNumbers.forEach(function(element) {
+                animateNumber(element);
+            });
+        }
+    }
+
+    window.addEventListener('scroll', checkScroll);
+    checkScroll();
 }
-
-window.addEventListener('scroll', checkScroll);
-checkScroll();
 
 // ========== КАРУСЕЛЬ ОТЗЫВОВ ==========
 const slides = document.querySelectorAll('.review-card');
