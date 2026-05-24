@@ -47,13 +47,14 @@ function animateNumber(element) {
   const target = Number(element.dataset.target);
   const duration = 2000;
   const step = target / (duration / 16);
+  const suffix = element.dataset.suffix || ''
   let current = 0;
   
   const timer = setInterval(() => {
     current += step;
     if (current >= target) {
       // Конец анимации — устанавливаем точное число
-      element.textContent = target;
+      element.textContent = target + suffix;
       clearInterval(timer);
     } else {
       // Промежуточное значение — округлённое вниз
